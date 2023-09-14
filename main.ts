@@ -9,11 +9,12 @@ function gspl() {
   while (true) {
     const input = prompt(">");
 
-    if (input?.includes("exit")) {
-      Deno.exit(1);
-    }
 
     if (input) {
+      if (input.includes("exit")) {
+        process.exit(1)
+      }
+
       const program = parser.produceAST(input);
 
       const result = evaluate(program);

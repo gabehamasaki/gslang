@@ -84,7 +84,7 @@ export function tokenize(sourceCode: string): Token[] {
           src[0],
         );
 
-        Deno.exit();
+        process.exit(0);
       }
     }
   }

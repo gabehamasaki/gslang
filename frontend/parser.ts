@@ -117,7 +117,7 @@ export default class Parser {
       }
       default:
         console.error("Unexpected token found during parse!", this.at());
-        Deno.exit(1);
+        process.exit(1);
     }
   }
 }
