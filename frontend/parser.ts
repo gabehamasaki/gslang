@@ -2,7 +2,6 @@ import {
   BinaryExpr,
   Expr,
   Identifier,
-  NullLiteral,
   NumericLiteral,
   Program,
   Stmt,
@@ -29,7 +28,7 @@ export default class Parser {
     const prev = this.tokens.shift();
     if (!prev || prev.type != type) {
       console.error("Parser Error:\n", err, prev, "- Expecting", type);
-      Deno.kill(1);
+      process.kill(1);
     }
 
     return prev;
@@ -98,9 +97,6 @@ export default class Parser {
     switch (tk) {
       case TokenType.Identifier:
         return { kind: "Identifier", symbol: this.eat().value } as Identifier;
-      case TokenType.Null:
-        this.eat();
-        return { kind: "NullLiteral", value: "null" } as NullLiteral;
       case TokenType.Number:
         return {
           kind: "NumericLiteral",
